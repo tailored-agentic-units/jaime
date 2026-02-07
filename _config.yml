@@ -1,0 +1,30 @@
+title: Jaime's Dev Blog
+description: Development updates and technical concepts from the TAU ecosystem.
+author: Jaime Still
+url: "https://tailored-agentic-units.github.io"
+baseurl: "/jaime"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+exclude:
+  - _capture
+  - .artifacts
+  - .claude
+  - .github
+  - .playwright-mcp
+  - samples
+  - .mcp.json
+  - CLAUDE.md
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - node_modules
+  - vendor

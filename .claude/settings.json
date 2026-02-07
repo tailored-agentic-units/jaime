@@ -1,0 +1,20 @@
+{
+  "plansDirectory": "./.claude/plans",
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:pages.github.com)",
+      "WebFetch(domain:docs.github.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:jekyllrb.com)",
+      "WebFetch(domain:github.blog)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_evaluate",
+      "mcp__playwright__browser_close"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "playwright"
+  ]
+}

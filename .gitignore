@@ -1,0 +1,9 @@
+.artifacts
+_site/
+.playwright-mcp/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+vendor/
+.bundle/
+assets/media/
