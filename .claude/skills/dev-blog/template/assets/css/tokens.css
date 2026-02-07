@@ -1,0 +1,63 @@
+@layer tokens {
+  :root {
+    color-scheme: dark light;
+
+    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo,
+      Consolas, "DejaVu Sans Mono", monospace;
+
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+
+    --radius: 0.25rem;
+    --content-width: 65ch;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: {{DARK_BG}};
+      --bg-soft: {{DARK_BG_SOFT}};
+      --bg-raised: {{DARK_BG_RAISED}};
+      --fg: {{DARK_FG}};
+      --fg-dim: {{DARK_FG_DIM}};
+      --fg-muted: {{DARK_FG_MUTED}};
+      --border: {{DARK_BORDER}};
+
+      --accent: {{DARK_ACCENT}};
+      --accent-dim: {{DARK_ACCENT_DIM}};
+      --link: {{DARK_LINK}};
+      --link-visited: {{DARK_LINK_VISITED}};
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: {{LIGHT_BG}};
+      --bg-soft: {{LIGHT_BG_SOFT}};
+      --bg-raised: {{LIGHT_BG_RAISED}};
+      --fg: {{LIGHT_FG}};
+      --fg-dim: {{LIGHT_FG_DIM}};
+      --fg-muted: {{LIGHT_FG_MUTED}};
+      --border: {{LIGHT_BORDER}};
+
+      --accent: {{LIGHT_ACCENT}};
+      --accent-dim: {{LIGHT_ACCENT_DIM}};
+      --link: {{LIGHT_LINK}};
+      --link-visited: {{LIGHT_LINK_VISITED}};
+    }
+  }
+}
