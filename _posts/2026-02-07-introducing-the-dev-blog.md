@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Introducing the Dev Blog"
-date: 2026-02-07
+date: 2026-02-07 08:00:00
 tags: [dev-blog, workflow, communication]
 category: update
 excerpt: "Establishing a structured approach to capturing and communicating weekly development progress."

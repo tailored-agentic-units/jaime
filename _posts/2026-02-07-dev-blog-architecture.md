@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Dev Blog System — Architecture Concept"
-date: 2026-02-06
+date: 2026-02-07 10:00:00
 tags: [dev-blog, architecture, jekyll, github-pages]
 category: concept
 excerpt: "Architecture concept for a developer blog built on GitHub Pages with Jekyll, managed through a Claude Code skill plugin."

@@ -2,6 +2,7 @@
   "plansDirectory": "./.claude/plans",
   "permissions": {
     "allow": [
+      "Skill(dev-blog)",
       "WebSearch",
       "WebFetch(domain:pages.github.com)",
       "WebFetch(domain:docs.github.com)",
