@@ -3,7 +3,7 @@ layout: post
 title: "Consolidating the Kernel Monorepo"
 date: 2026-02-07 12:00:00
 tags: [kernel, monorepo, go, architecture]
-category: update
+category: progress
 excerpt: "Migrating nine independent TAU libraries into a single Go module at github.com/tailored-agentic-units/kernel."
 ---
 

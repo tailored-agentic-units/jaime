@@ -74,29 +74,35 @@ Create the target directory and subdirectories:
     └── skills/
 ```
 
-### Step 3: Copy Template Files
+### Step 3: Copy Source Files
 
-Read template files from the skill's `template/` directory and write them to the target.
+Read files from the **source blog** (the repo containing this skill) and write them to the target. The source blog is the canonical reference — no separate templates are maintained.
 
-**Parameterized files** — substitute placeholders:
+**Adapted files** — read from source, substitute values:
 
-| Template | Placeholders |
-|----------|-------------|
-| `template/_config.yml` | `{{SITE_TITLE}}`, `{{SITE_DESCRIPTION}}`, `{{AUTHOR}}`, `{{URL}}`, `{{BASEURL}}` |
-| `template/CLAUDE.md` | `{{SITE_TITLE}}`, `{{BASEURL}}`, `{{URL}}`, `{{REPO_OWNER}}`, `{{REPO_NAME}}` |
+| Source File | Substitutions |
+|-------------|--------------|
+| `_config.yml` | Replace `title`, `description`, `author`, `url`, `baseurl` values with collected metadata. Keep all other config (plugins, pagination, autopages, exclude list) as-is. |
+| `.claude/CLAUDE.md` | Replace the hosted URL (`https://tailored-agentic-units.github.io/jaime/`) with the new URL. Replace baseurl `/jaime` references with new baseurl. Replace repo-specific references. |
 
-**Static files** — copy verbatim:
+**Verbatim files** — copy directly from the source blog:
 
-- `template/_layouts/*` → `_layouts/`
-- `template/_includes/*` → `_includes/`
-- `template/assets/css/index.css` → `assets/css/index.css`
-- `template/assets/css/reset.css` → `assets/css/reset.css`
-- `template/assets/css/theme.css` → `assets/css/theme.css`
-- `template/assets/css/layout.css` → `assets/css/layout.css`
-- `template/assets/css/components.css` → `assets/css/components.css`
-- `template/.gitignore` → `.gitignore`
-- `template/index.md` → `index.md`
-- `template/github-workflows/pages.yml` → `.github/workflows/pages.yml`
+- `_layouts/default.html` → `_layouts/`
+- `_layouts/home.html` → `_layouts/`
+- `_layouts/post.html` → `_layouts/`
+- `_layouts/category.html` → `_layouts/`
+- `_includes/head.html` → `_includes/`
+- `_includes/nav.html` → `_includes/`
+- `_includes/video.html` → `_includes/`
+- `_includes/pagination.html` → `_includes/`
+- `assets/css/index.css` → `assets/css/`
+- `assets/css/reset.css` → `assets/css/`
+- `assets/css/theme.css` → `assets/css/`
+- `assets/css/layout.css` → `assets/css/`
+- `assets/css/components.css` → `assets/css/`
+- `.gitignore` → `.gitignore`
+- `index.md` → `index.md`
+- `.github/workflows/pages.yml` → `.github/workflows/`
 
 ### Step 4: Generate Themed CSS
 
@@ -104,7 +110,7 @@ Follow the [themes.md](../references/themes.md) workflow:
 
 1. Validate the dark and light theme names against `rougify style list`
 2. Generate `syntax.css` with both themes wrapped in `@layer syntax` and `prefers-color-scheme` media queries
-3. Generate `tokens.css` using the template from `template/assets/css/tokens.css`, substituting color values extracted from the Rouge theme output
+3. Generate `tokens.css` — read the source blog's `assets/css/tokens.css`, replace the color values in the `prefers-color-scheme: dark` and `prefers-color-scheme: light` blocks with colors derived from the chosen Rouge themes. Keep the structural tokens (fonts, spacing, radius, widths) unchanged.
 
 ### Step 5: Generate Gemfile and Install Dependencies
 
@@ -114,7 +120,7 @@ Generate the Gemfile dynamically to ensure the latest versions of all gems:
 cd {target-directory}
 bundle init
 bundle add jekyll
-bundle add jekyll-feed jekyll-seo-tag jekyll-sitemap --group jekyll_plugins
+bundle add jekyll-feed jekyll-paginate-v2 jekyll-seo-tag jekyll-sitemap --group jekyll_plugins
 ```
 
 ### Step 6: Initialize Git and Build
@@ -150,5 +156,7 @@ Write `.claude/settings.json`:
 - Fully functional Jekyll blog ready for `bundle exec jekyll serve`
 - GitHub Actions workflow for automatic deployment on push to `main`
 - CSS cascade layers with themed dark/light syntax highlighting
+- Pagefind search with category and tag filtering
+- Category pages auto-generated via jekyll-paginate-v2 autopages
 - Claude Code project configuration with skill permissions
 - Empty `_posts/`, `_drafts/`, and `_capture/` directories ready for content

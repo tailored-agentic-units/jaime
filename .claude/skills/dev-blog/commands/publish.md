@@ -26,7 +26,7 @@ Display the draft content and build a preview:
 bundle exec jekyll serve --drafts
 ```
 
-Take a Playwright screenshot for visual confirmation. Save to `.playwright-mcp/publish-preview.png`.
+Take a Playwright screenshot for visual confirmation. Save to `_capture/.playwright/publish-preview.png`.
 
 Ask the user to confirm the draft is ready for publication. If changes are needed, make them and re-preview.
 
@@ -95,7 +95,7 @@ Verify:
 - All links resolve (cross-references via `post_url`, external links)
 - Media loads from release URLs (if applicable)
 
-Take Playwright screenshots of the home page and the published post. Save to `.playwright-mcp/`.
+Take Playwright screenshots of the home page and the published post. Save to `_capture/.playwright/`.
 
 ### Step 7: Stage for Review
 

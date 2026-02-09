@@ -3,7 +3,7 @@ layout: post
 title: "Kernel Architecture — Overview"
 date: 2026-02-07 14:00:00
 tags: [kernel, architecture, go, connectrpc]
-category: concept
+category: engineering
 excerpt: "Architecture overview for the TAU kernel — a unified Go module composing nine subsystems into a reusable agent runtime."
 ---
 
