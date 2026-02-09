@@ -11,6 +11,11 @@
     font-family: var(--font-mono);
   }
 
+  h1, h2, h3, h4, h5, h6,
+  a {
+    font-family: var(--font-mono);
+  }
+
   a {
     color: var(--link);
     text-decoration-thickness: 1px;
@@ -18,7 +23,7 @@
   }
 
   a:visited {
-    color: var(--link-visited);
+    color: var(--link);
   }
 
   a:hover {
