@@ -82,7 +82,7 @@ Generated from analysis of 5 weekly update emails and 3 technical concept docume
 
 ## Formatting Conventions
 
-### Update Posts
+### Progress Posts
 
 - Opens with a brief context-setting introduction (what this period was about)
 - Closes with a forward-looking statement
@@ -92,7 +92,7 @@ Generated from analysis of 5 weekly update emails and 3 technical concept docume
 - References to media (video, screenshots) for demonstrations
 - Numbers and statistics quantify impact (e.g., "11,000 lines of Go code" reimplemented in "570 lines of markdown")
 
-### Concept Documents
+### Engineering Posts
 
 - Title follows pattern: `[Subject] — [Qualifier]` (e.g., "TAU Agent Runtime — Ecosystem Concept")
 - Numbered top-level sections for major divisions
@@ -108,7 +108,7 @@ Generated from analysis of 5 weekly update emails and 3 technical concept docume
 
 ## Structural Patterns
 
-### Update Posts
+### Progress Posts
 
 1. Context-setting introduction (what this week/period was about)
 2. Two to four topic sections, each with:
@@ -118,7 +118,7 @@ Generated from analysis of 5 weekly update emails and 3 technical concept docume
 3. Optional demonstration section (media references)
 4. Forward-looking closing statement
 
-### Concept Documents
+### Engineering Posts
 
 1. Title and overview (1-2 sentence summary)
 2. Problem statement or current state
@@ -129,12 +129,31 @@ Generated from analysis of 5 weekly update emails and 3 technical concept docume
 7. Testing or validation strategy
 8. Key principles summary
 
+### Announcement Posts
+
+1. Opening statement — the specific thing being announced
+2. What it means — immediate implication or impact
+3. Optional: link or reference for more detail
+
+Voice: Brief, direct, factual. 1-2 paragraphs max. States the specific detail and its immediate implication. No deep technical dive. Confidence without ceremony.
+
+### Future Posts
+
+1. Speculative premise — what if we could...
+2. Exploration — walk through the idea, its constraints, what it would take
+3. Technical grounding — connect speculation to real engineering principles
+4. Open-ended close — leave room for the idea to evolve
+
+Voice: Exploratory, speculative tone. First-person musing. Longer-form. Permission to be imaginative while maintaining technical grounding. The audience is the author and fellow engineers who enjoy thinking about what's possible.
+
 ---
 
 ## Audience Awareness
 
-- Updates are written for a mixed audience: technical peers and non-technical leadership
-- Concepts are written for technical implementers and architectural reviewers
+- Progress posts are written for a mixed audience: technical peers and non-technical leadership
+- Engineering posts are written for technical implementers and architectural reviewers
+- Announcement posts are written for anyone following the project — clear and accessible
+- Future posts are written for the author and fellow engineers who enjoy speculative thinking
 - The same voice adjusts depth and framing based on audience
 - Impact framing for leadership: "accelerates how quickly the organization can..."
 - Technical framing for peers: specific library names, API patterns, code references

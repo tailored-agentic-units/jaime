@@ -8,15 +8,41 @@
   nav {
     padding: var(--space-4);
     border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
   }
 
-  nav a {
+  .nav-title {
     font-weight: 600;
     text-decoration: none;
     color: var(--fg);
   }
 
-  nav a:visited {
+  .nav-title:visited {
+    color: var(--fg);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  .nav-links a {
+    font-size: var(--text-sm);
+    text-decoration: none;
+    color: var(--fg-dim);
+    transition: color 0.15s;
+  }
+
+  .nav-links a:visited {
+    color: var(--fg-dim);
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
     color: var(--fg);
   }
 

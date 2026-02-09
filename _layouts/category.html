@@ -1,0 +1,17 @@
+---
+layout: default
+---
+
+<section class="home">
+  <h1 class="category-title">{{ page.title | capitalize }}</h1>
+
+  <ul class="post-list">
+    {% for post in paginator.posts %}
+    {% include post-card.html %}
+    {% endfor %}
+  </ul>
+
+  {% if paginator.total_pages > 1 %}
+  {% include pagination.html %}
+  {% endif %}
+</section>

@@ -57,6 +57,6 @@ The Rouge theme output includes background and foreground colors for the `.highl
 - **--bg** — derived from `.highlight { background: ... }`
 - **--fg** — derived from `.highlight { color: ... }`
 
-These provide a starting point for the token palette. The remaining tokens (--bg-soft, --bg-raised, --fg-dim, --fg-muted, --border, --accent, --link, --link-visited) should be derived as complementary values or set to reasonable defaults that pair well with the Rouge theme's palette.
+These provide a starting point for the token palette. Read the source blog's `assets/css/tokens.css` and replace the color values in the `prefers-color-scheme: dark` and `prefers-color-scheme: light` blocks with colors derived from the chosen Rouge themes. Keep the structural tokens (fonts, spacing, radius, widths) unchanged. The remaining color tokens (--bg-soft, --bg-raised, --fg-dim, --fg-muted, --border, --accent, --link, --link-visited) should be derived as complementary values that pair well with the Rouge theme's palette.
 
 The user can customize the full token palette after init by editing `assets/css/tokens.css`.

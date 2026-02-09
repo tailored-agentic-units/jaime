@@ -1,50 +1,77 @@
 @layer components {
 
-  /* --- Post list (home) --- */
+  /* --- Post list --- */
 
   .post-list {
     list-style: none;
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--space-6);
+    gap: var(--space-4);
   }
 
-  .post-list li {
+  /* --- Post card --- */
+
+  .post-card {
     display: flex;
     flex-direction: column;
-    gap: var(--space-1);
+    gap: var(--space-3);
+    background-color: var(--bg-soft);
+    border-radius: var(--radius);
+    padding: var(--space-4);
   }
 
-  .post-list time {
-    font-size: var(--text-sm);
-    color: var(--fg-muted);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .post-list a {
+  .post-card-title {
     font-size: var(--text-xl);
     font-weight: 600;
     text-decoration: none;
   }
 
-  .post-list a:hover {
+  .post-card-title:hover {
     text-decoration: underline;
     text-decoration-thickness: 2px;
   }
 
-  .post-list .excerpt {
-    color: var(--fg-dim);
-    font-size: var(--text-sm);
+  .post-card-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
   }
 
-  .category {
-    display: inline-block;
-    font-size: var(--text-sm);
+  .post-card-category {
+    font-weight: 700;
+    font-size: var(--text-lg);
+    text-decoration: none;
     color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 600;
+    line-height: 1;
+  }
+
+  .post-card-category:visited { color: var(--accent); }
+  .post-card-category:hover { text-decoration: underline; }
+
+  .post-card-separator {
+    color: var(--fg-muted);
+    font-size: var(--text-lg);
+    line-height: 1;
+  }
+
+  .post-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    align-items: center;
+  }
+
+  .post-card time {
+    font-size: var(--text-sm);
+    color: var(--fg-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .post-card-excerpt {
+    color: var(--fg-dim);
+    font-size: var(--text-sm);
+    margin: 0;
   }
 
   /* --- Post article --- */
@@ -72,10 +99,11 @@
 
   .tag {
     font-size: var(--text-sm);
-    color: var(--accent);
-    background-color: var(--bg-raised);
-    padding: var(--space-1) var(--space-2);
-    border-radius: var(--radius);
+    color: var(--bg);
+    background-color: var(--tag-bg);
+    padding: 0.125rem var(--space-2);
+    border-radius: 0.15rem;
+    line-height: 1.4;
   }
 
   /* --- Prose content (markdown output) --- */
@@ -202,5 +230,42 @@
   .post img {
     border-radius: var(--radius);
     margin-bottom: var(--space-4);
+  }
+
+  /* --- Category page --- */
+
+  .category-title {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-6);
+  }
+
+  /* --- Pagination --- */
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border);
+    font-size: var(--text-sm);
+  }
+
+  .pagination a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .pagination a:hover {
+    text-decoration: underline;
+  }
+
+  .pagination .disabled {
+    color: var(--fg-muted);
+  }
+
+  .pagination .page-number {
+    color: var(--fg-dim);
   }
 }

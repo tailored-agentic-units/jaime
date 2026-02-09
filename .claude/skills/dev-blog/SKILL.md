@@ -72,12 +72,14 @@ The `init` command collects the following metadata to scaffold the blog:
 
 ### Content Types
 
-Both types use the same `post` layout. Differentiation is through frontmatter only.
+All types use the same `post` layout. Differentiation is through frontmatter only. Categories are open-ended — new categories can be introduced at draft time and will automatically appear in navigation and category pages.
 
 | Type | Category | Purpose |
 |------|----------|---------|
-| **Update** | `update` | Development progress, new capabilities, strategic direction |
-| **Concept** | `concept` | Technical architecture and design documents |
+| **Progress** | `progress` | Development progress, new capabilities, strategic direction |
+| **Engineering** | `engineering` | Technical architecture and design documents |
+| **Announcement** | `announcement` | Brief, focused announcements of specific details |
+| **Future** | `future` | Speculative engineering concepts explored for the joy of it |
 
 ### Post Frontmatter Schema
 
@@ -94,7 +96,7 @@ excerpt: "One-sentence summary for the post listing."
 
 - `layout` is always `post`
 - `date` includes time component for same-day ordering (newest at top)
-- `category` is singular (`update` or `concept`)
+- `category` is singular (e.g. `progress`, `engineering`, `announcement`, `future`)
 - `tags` is a YAML array
 - `excerpt` truncated to 30 words on home page
 

@@ -7,8 +7,9 @@ Jekyll 4.x blog deployed to GitHub Pages via GitHub Actions. Hosted at `https://
 ## Key Details
 
 - **baseurl**: `/jaime` — all asset references must use `| relative_url` filter
-- **Layouts**: `default` (HTML shell) → `home` (index) + `post` (all entries)
-- **Content types**: Updates (category: update) and concepts (category: concept) — same layout, differentiated by frontmatter
+- **Layouts**: `default` (HTML shell) → `home` (index) + `post` (articles) + `category` (filtered by category)
+- **Categories**: Dynamic — defined by post frontmatter, auto-generated category pages via jekyll-paginate-v2 autopages at `/categories/{slug}/`. Nav links are driven by `site.categories`. Current: `progress`, `engineering`. Open-ended — new categories appear automatically when used in a post.
+- **Pagination**: jekyll-paginate-v2 with autopages for category index pages
 - **CSS**: Cascade layers in `assets/css/` — tokens, reset, theme, layout, components, syntax. Entry point is `index.css`.
 - **Syntax highlighting**: Rouge GitHub (dark + light) via `prefers-color-scheme`
 - **Media**: Gitignored `assets/media/` for local staging. Published media goes to GitHub Releases with tag `post/{slug}`.
@@ -23,12 +24,12 @@ Jekyll 4.x blog deployed to GitHub Pages via GitHub Actions. Hosted at `https://
 
 ```bash
 bundle exec jekyll build
-bundle exec jekyll serve           # local preview at localhost:4000/jaime/
+bundle exec jekyll serve               # local preview at localhost:4000/jaime/
 ```
 
 ## Playwright
 
-All Playwright MCP screenshots and artifacts must be saved to `.playwright-mcp/` — never to the repo root. Use absolute or relative paths prefixed with `.playwright-mcp/` for the `filename` parameter (e.g., `.playwright-mcp/preview.png`).
+All playwright-cli screenshots and recordings must be saved to `_capture/.playwright/`. Use `--filename=_capture/.playwright/<name>.png` for screenshots.
 
 ## Deployment
 

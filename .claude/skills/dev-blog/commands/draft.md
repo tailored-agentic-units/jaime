@@ -17,14 +17,18 @@ List all `.md` files in `_capture/{bucket}/` ordered by sequence number prefix (
 
 ### Step 2: Determine Content Type
 
-Ask the user which content type this post should be:
+Ask the user which category this post should use. Present the existing categories from `_posts/` as options, and allow the user to specify a new one.
+
+Known categories and their structural patterns:
 
 | Type | Category | Structural Pattern |
 |------|----------|--------------------|
-| **Update** | `update` | Context-setting intro, topic sections (what/why/evidence), forward-looking close |
-| **Concept** | `concept` | Title — Qualifier, problem/current state, solution, design principles, architecture, key principles |
+| **Progress** | `progress` | Context-setting intro, topic sections (what/why/evidence), forward-looking close |
+| **Engineering** | `engineering` | Title — Qualifier, problem/current state, solution, design principles, architecture, key principles |
+| **Announcement** | `announcement` | Brief opening statement, the specific detail and its implication, 1-2 paragraphs max |
+| **Future** | `future` | Speculative premise, exploration of possibilities, technical grounding, open-ended close |
 
-The content type sets the `category` frontmatter value and determines which structural pattern from the style profile to follow.
+This table is non-exhaustive. If the user specifies a new category, use the general voice calibration from the style profile. The category sets the `category` frontmatter value and determines which structural pattern to follow.
 
 ### Step 3: Load Style Profile
 
@@ -34,24 +38,35 @@ Read `.claude/context/style-profile.md` and apply the voice calibration:
 - **Sentence structure** — follow the cadence patterns (short/long/medium)
 - **Vocabulary** — use favored words, avoid avoided words
 - **Formatting conventions** — match the conventions for the selected content type
-- **Structural patterns** — follow the section ordering for updates or concepts
+- **Structural patterns** — follow the section ordering for the selected category
 
 ### Step 4: Generate Draft
 
 Compose the post from the captured entries. This is a synthesis, not a concatenation — the entries provide raw material that gets shaped into a cohesive post.
 
-**For updates:**
+**For progress:**
 1. Opening paragraph — set the context for what this period was about
 2. Topic sections — organize captured entries into logical sections, each with what was done, why it matters, and links to evidence
 3. Closing paragraph — forward-looking statement
 
-**For concepts:**
+**For engineering:**
 1. Opening paragraph — one-sentence summary of the concept
 2. Problem statement or current state
 3. Target state or proposed solution
 4. Design principles and philosophy
 5. Architecture details (tables, diagrams, hierarchies)
 6. Key principles summary
+
+**For announcement:**
+1. Opening statement — the specific thing being announced
+2. What it means — immediate implication or impact
+3. Optional: link or reference for more detail
+
+**For future:**
+1. Speculative premise — what if we could...
+2. Exploration — walk through the idea, its constraints, what it would take
+3. Technical grounding — connect speculation to real engineering principles
+4. Open-ended close — leave room for the idea to evolve
 
 ### Step 5: Write Frontmatter
 
@@ -63,12 +78,12 @@ layout: post
 title: "[Generated title]"
 date: YYYY-MM-DD HH:MM:SS
 tags: [tag-1, tag-2, tag-3]
-category: update | concept
+category: progress | engineering | announcement | future
 excerpt: "[One-sentence summary]"
 ---
 ```
 
-- **title**: For updates, a declarative statement. For concepts, follow the `Subject — Qualifier` pattern.
+- **title**: For progress posts, a declarative statement. For engineering posts, follow the `Subject — Qualifier` pattern. For announcements, a concise factual statement. For future posts, an evocative question or premise.
 - **date**: Use a placeholder date (today) with time component. The publish command sets the final datetime.
 - **tags**: 3-4 lowercase, kebab-case tags relevant to the content.
 - **excerpt**: Under 30 words (the home page truncation limit).
@@ -99,7 +114,7 @@ Build and serve with drafts enabled:
 bundle exec jekyll serve --drafts
 ```
 
-Take a Playwright screenshot of the draft post for visual review. Save to `.playwright-mcp/draft-preview.png`.
+Take a Playwright screenshot of the draft post for visual review. Save to `_capture/.playwright/draft-preview.png`.
 
 Present the draft to the user for feedback. Iterate on content, structure, or voice as needed before publishing.
 
