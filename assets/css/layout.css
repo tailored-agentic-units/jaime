@@ -33,6 +33,7 @@
   .nav-links a {
     font-size: var(--text-sm);
     text-decoration: none;
+    text-transform: uppercase;
     color: var(--fg-dim);
     transition: color 0.15s;
   }
