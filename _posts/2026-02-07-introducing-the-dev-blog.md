@@ -35,9 +35,9 @@ This approach ensures that nothing significant falls through the cracks, and the
 
 ## What to Expect
 
-The blog will primarily feature two types of content:
+The blog will primarily feature two categories of content:
 
-- **Updates** — regular posts covering development progress, new capabilities, and strategic direction across the TAU ecosystem. These are the successor to the weekly email updates.
-- **Concepts** — technical architecture and design documents that capture the thinking behind significant decisions. These serve as both communication artifacts and living references for implementation.
+- **Progress** — regular posts covering development progress, new capabilities, and strategic direction across the TAU ecosystem. These are the successor to the weekly email updates.
+- **Engineering** — technical architecture and design documents that capture the thinking behind significant decisions. These serve as both communication artifacts and living references for implementation.
 
-Looking forward to making the most of this new format.
+This may evolve as my workflow evolves, but this is the state it's starting out in for now. Looking forward to making the most of this new format.
