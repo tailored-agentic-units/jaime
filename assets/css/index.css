@@ -1,8 +1,10 @@
-@layer tokens, reset, theme, layout, components, syntax;
+@layer reset, tokens, typography, colors, layout, borders, transitions, components;
 
-@import url("./tokens.css");
 @import url("./reset.css");
-@import url("./theme.css");
+@import url("./tokens.css");
+@import url("./typography.css");
+@import url("./colors.css");
 @import url("./layout.css");
+@import url("./borders.css");
+@import url("./transitions.css");
 @import url("./components.css");
-@import url("./syntax.css");

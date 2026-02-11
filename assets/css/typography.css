@@ -1,0 +1,61 @@
+@layer typography {
+
+  /* Sans is the prose voice — body text only.
+     Mono is the structural voice — headings, chrome, code. */
+
+  body {
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-mono);
+  }
+
+  a,
+  nav,
+  footer {
+    font-family: var(--font-mono);
+  }
+
+  /* --- Type scale --- */
+
+  h1 { font-size: var(--text-3xl); font-weight: var(--weight-bold); line-height: var(--leading-tight); }
+  h2 { font-size: var(--text-2xl); font-weight: var(--weight-bold); line-height: var(--leading-tight); }
+  h3 { font-size: var(--text-xl);  font-weight: var(--weight-bold); line-height: var(--leading-snug); }
+  h4 { font-size: var(--text-lg);  font-weight: var(--weight-bold); line-height: var(--leading-snug); }
+
+  /* --- Chrome typography --- */
+
+  nav {
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  time {
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+  }
+
+  footer {
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  /* --- Code typography --- */
+
+  pre,
+  code {
+    font-family: var(--font-mono);
+    font-size: var(--code-size);
+    line-height: var(--leading-normal);
+  }
+}

@@ -1,0 +1,95 @@
+theme:
+  name: "Graphic Realism"
+  description: >
+    Inspired by the design language and UI structure of Bungie's Marathon.
+    A dynamic, expressive, and clean future sci-fi / cyberpunk aesthetic.
+    Rooted in the principle of "freedom in limitation through defined
+    executional constraints." Simplified/deconstructed graphic design on
+    the structural side; realistic proportionality and clean reading
+    environment on the content side. Not a direct reproduction — an
+    adaptation of the aesthetic's principles for a dev blog context.
+  references:
+    - https://80.lv/articles/marathon-art-director-shares-the-team-s-creative-influences
+    - https://www.marathonthegame.com/
+    - Joseph Cross Twitter thread on "Graphic Realism" production term
+  influences:
+    - "Marathon (Bungie, 2026) — primary visual reference"
+    - "Mirror's Edge — clean geometric spaces, bold color fields"
+    - "Ghost in the Shell — cyberpunk institutional aesthetics"
+    - "The Designers Republic — graphic design as interface language"
+    - "Nike design culture — bold typography, sport-functional aesthetics"
+    - "Alberto Mielgo / Into the Spider-Verse — expressive visual risks"
+    - "Katsuhiro Otomo — manga-scale sci-fi detail"
+    - "Wipeout — Y2K futurism, anti-gravity racing UI"
+    - "Formula 1 / MotoGP — technical livery, sponsor typography systems"
+
+# Layers below are populated as each design stage is validated.
+# The spec is the source of truth — values are written here only
+# after visual evaluation and alignment.
+
+reset:
+  box_model: "border-box on *, *::before, *::after"
+  margin: "zero on *:not(dialog) — preserves native dialog centering"
+  padding: "zero on *, *::before, *::after"
+  body:
+    min_height: "100dvh"
+    line_height: 1.6
+    font_size: "100%"
+    font_smoothing: "-webkit-font-smoothing antialiased"
+    text_rendering: "optimizeLegibility"
+  form_inheritance: "input, button, textarea, select inherit font"
+  media_defaults: "img, picture, video, canvas, svg: display block, max-width 100%"
+  text_wrapping:
+    paragraphs: "text-wrap pretty, overflow-wrap break-word"
+    headings: "text-wrap balance, overflow-wrap break-word"
+  list_normalization: "strip list-style from ul, ol"
+  anchor_normalization: "color inherit, text-decoration none"
+  table_normalization: "border-collapse collapse, border-spacing 0"
+  scroll_behavior: "smooth on html, disabled via prefers-reduced-motion"
+  explicit_exclusions:
+    - "no colors"
+    - "no spacing beyond zero"
+    - "no layout properties"
+    - "no border styles"
+    - "no font stacks or type scale"
+    - "no component-level rules"
+
+tokens:
+  font_stacks:
+    sans-serif: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans', 'Liberation Sans', Arial, sans-serif"
+    monospace: "ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace"
+  type_scale:
+    ratio: "minor third (1.2)"
+    steps: "xs 0.694rem, sm 0.833rem, base 1rem, lg 1.2rem, xl 1.44rem, 2xl 1.728rem, 3xl 2.074rem"
+  line_heights: "tight 1.1, snug 1.25, normal 1.45, relaxed 1.6"
+  font_weights: "normal 400, bold 700"
+  code_size: "0.9rem"
+  letter_spacing: "tight 0, wide 0.05rem"
+
+typography:
+  voices:
+    prose: "sans-serif — body text only (the reading voice)"
+    structural: "monospace — headings, chrome, code, links (the system voice)"
+  heading_scale:
+    h1: "text-3xl, bold, leading-tight"
+    h2: "text-2xl, bold, leading-tight"
+    h3: "text-xl, bold, leading-snug"
+    h4: "text-lg, bold, leading-snug"
+  chrome:
+    nav: "text-sm, leading-snug, tracking-wide, uppercase"
+    time: "text-sm, leading-snug"
+    footer: "text-sm, leading-snug, tracking-wide, uppercase"
+  code:
+    all: "mono, code-size (0.9rem), leading-normal"
+  links: "mono — interactive elements use the structural voice"
+  unit_convention: "rem for all sizing tokens — no em to avoid cascade compounding"
+
+colors: {}
+
+layout: {}
+
+borders: {}
+
+transitions: {}
+
+components: {}
