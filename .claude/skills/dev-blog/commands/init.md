@@ -44,8 +44,7 @@ Required:
 - Repository owner (GitHub org or username)
 - Site title (nav header and page titles)
 - Author name (footer copyright and meta tags)
-- Dark theme (Rouge theme name — see [themes.md](../references/themes.md))
-- Light theme (Rouge theme name — see [themes.md](../references/themes.md))
+- Theme strategy (see Step 4)
 
 Optional:
 - Pages domain (defaults to `{owner}.github.io`)
@@ -93,12 +92,15 @@ Read files from the **source blog** (the repo containing this skill) and write t
 - `_layouts/category.html` → `_layouts/`
 - `_includes/head.html` → `_includes/`
 - `_includes/nav.html` → `_includes/`
-- `_includes/video.html` → `_includes/`
+- `_includes/post-card.html` → `_includes/`
 - `_includes/pagination.html` → `_includes/`
+- `_includes/video.html` → `_includes/`
 - `assets/css/index.css` → `assets/css/`
 - `assets/css/reset.css` → `assets/css/`
-- `assets/css/theme.css` → `assets/css/`
+- `assets/css/typography.css` → `assets/css/`
 - `assets/css/layout.css` → `assets/css/`
+- `assets/css/borders.css` → `assets/css/`
+- `assets/css/transitions.css` → `assets/css/`
 - `assets/css/components.css` → `assets/css/`
 - `.gitignore` → `.gitignore`
 - `index.md` → `index.md`
@@ -106,11 +108,34 @@ Read files from the **source blog** (the repo containing this skill) and write t
 
 ### Step 4: Generate Themed CSS
 
-Follow the [themes.md](../references/themes.md) workflow:
+Ask the user which theme strategy to use:
 
-1. Validate the dark and light theme names against `rougify style list`
+#### Option A: Quick Start (Rouge themes)
+
+Derive colors from a Rouge syntax highlighting theme pair. Fast setup with reasonable defaults.
+
+1. Collect dark and light Rouge theme names (validate against `rougify style list` — see [themes.md](../references/themes.md))
 2. Generate `syntax.css` with both themes wrapped in `@layer syntax` and `prefers-color-scheme` media queries
-3. Generate `tokens.css` — read the source blog's `assets/css/tokens.css`, replace the color values in the `prefers-color-scheme: dark` and `prefers-color-scheme: light` blocks with colors derived from the chosen Rouge themes. Keep the structural tokens (fonts, spacing, radius, widths) unchanged.
+3. Generate `tokens.css` — read the source blog's `assets/css/tokens.css`, replace color values with colors derived from the chosen Rouge themes. Keep structural tokens (fonts, spacing, radius, widths) unchanged.
+4. Generate `colors.css` with surface/text semantic aliases derived from the Rouge palette
+
+#### Option B: Custom Theme (theme-design skill)
+
+Build a theme from scratch using the bottom-up layer design process. Maximum creative control.
+
+1. Copy all CSS files as empty `@layer` wrappers
+2. Invoke the `theme-design` skill with `design init <theme-name>`
+3. The user proceeds through the layer-by-layer design process with visual validation
+4. This is an interactive, multi-session process — init completes when the scaffold is ready
+
+#### Option C: Existing Spec (design load)
+
+Load a previously designed theme from its specification file.
+
+1. Ask for the path to the `spec.yaml` (or the theme directory containing it)
+2. Copy the spec into `.claude/skills/theme-design/themes/<name>/`
+3. Invoke `design load <spec-dir>` to materialize the spec into CSS files
+4. Copy remaining verbatim CSS files not covered by the spec
 
 ### Step 5: Generate Gemfile and Install Dependencies
 
@@ -145,7 +170,8 @@ Write `.claude/settings.json`:
   "plansDirectory": "./.claude/plans",
   "permissions": {
     "allow": [
-      "Skill(dev-blog)"
+      "Skill(dev-blog)",
+      "Skill(theme-design)"
     ]
   }
 }
@@ -156,7 +182,6 @@ Write `.claude/settings.json`:
 - Fully functional Jekyll blog ready for `bundle exec jekyll serve`
 - GitHub Actions workflow for automatic deployment on push to `main`
 - CSS cascade layers with themed dark/light syntax highlighting
-- Pagefind search with category and tag filtering
 - Category pages auto-generated via jekyll-paginate-v2 autopages
 - Claude Code project configuration with skill permissions
 - Empty `_posts/`, `_drafts/`, and `_capture/` directories ready for content

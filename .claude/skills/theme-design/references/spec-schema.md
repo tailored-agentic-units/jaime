@@ -11,95 +11,89 @@ theme:
 
 reset:
   box_model: ""
-  margin_padding: ""
-  typography_baseline:
-    root_font: ""
-    root_line_height: 0
-    root_font_size: ""
-    inheritance: ""
+  margin: ""
+  padding: ""
+  body:
+    min_height: ""
+    line_height: 0
+    font_size: ""
+    font_smoothing: ""
+    text_rendering: ""
+  form_inheritance: ""
   media_defaults: ""
-  list_normalization: ""
+  text_wrapping:
+    paragraphs: ""
+    headings: ""
+  list_normalization: ""  # preserve browser defaults or strip — component layer handles exceptions
   anchor_normalization: ""
   table_normalization: ""
   scroll_behavior: ""
-  text_rendering: ""
   explicit_exclusions: []  # what the reset intentionally does NOT do
 
-tokens: {}  # CSS custom properties — populated incrementally as each layer is designed
+tokens:
+  font_stacks: {}    # keyed by category: sans-serif, monospace, etc.
+  type_scale:
+    ratio: ""        # e.g., "minor third (1.2)"
+    steps: ""        # computed rem values
+  line_heights: ""   # named steps: tight, snug, normal, relaxed
+  font_weights: ""   # normal, bold (+ others if needed)
+  code_size: ""      # mono in sans context typically needs reduction
+  letter_spacing: "" # tight, wide
 
 typography:
-  stacks: {}   # open-ended map keyed by Google Fonts category (sans-serif, serif, monospace, display, handwriting)
-  usage: {}    # parallel map — same keys as stacks, values explain design role
-  scale:
-    ratio: 0     # e.g., 1.2 (minor third)
-    steps: []    # computed rem values
-  weights: {}   # same keys as stacks — e.g., monospace: [400, 700], sans-serif: [400, 600, 700]
-  line_height:
-    chrome: { min: 0, max: 0 }  # tight — short-run labels, nav
-    body: 0                      # generous — sustained reading
-    code: 0                      # between chrome and body
-  letter_spacing:
-    uppercase_labels: ""  # e.g., "0.05em to 0.1em"
-    body: ""              # e.g., "0"
+  voices: {}         # keyed by role: prose, structural
+  heading_scale: {}  # keyed by h1-h4: size, weight, line-height
+  chrome: {}         # keyed by element: nav, time, footer
+  code:
+    all: ""          # font, size, line-height
+  table:
+    th: ""           # alignment
+  links: ""          # font family assignment
+  unit_convention: ""
 
 colors:
-  color_scheme: ""  # e.g., "dark light" — tells browser how to render UA elements
-  surfaces:
-    light: ""
-    dark: ""
-    note: ""
-  content:
-    dark_surface:
-      primary: ""
-      secondary: ""
-      tertiary: ""
-    light_surface:
-      primary: ""
-      secondary: ""
-      tertiary: ""
-    note: ""
-  semantic_hues:
-    - name: ""
-      role: ""
-      dark: ""
-      light: ""
-      reference: ""
-  syntax:
-    variant: "base16"
-    derivation_arc: ""
-    derivation_principle: ""
-    dark:
-      base00: "" # through base0F
-    light:
-      base00: "" # through base0F
-    known_issue: ""
+  approach: ""       # dark-first or light-first
+  color_scheme: ""   # e.g., "dark light"
+  temperature: ""    # overall neutral temperature
+  architecture:
+    principle: ""    # e.g., "theme colors are source of truth, base16 derives from them"
+    flow: ""         # dependency direction
+    benefit: ""      # why this architecture
+  theme_colors:
+    dark: {}         # chrome, interactive, emphasis — direct hex values
+    light: {}        # chrome, interactive, emphasis — direct hex values
+  semantic_surfaces: {}  # base, raised, overlay — mapped to base00-02
+  semantic_text: {}      # primary, secondary, muted — mapped to base03-05
+  dark_neutrals: {}      # base00-07 with hex + description
+  dark_accents: {}       # base08-0F — hex or var(--color-*) + description
+  light_neutrals: {}     # base00-07 with hex + description
+  light_accents: {}      # base08-0F — may remap slots vs dark mode
+  element_colors: {}     # per-element color assignments
+  syntax_mapping: {}     # Rouge class → base16 slot mapping
 
 layout:
-  base_unit: ""
-  scale: []
-  content_max_width: ""
-  vertical_rhythm: ""
-  breakpoints:
-    tablet: ""
-    desktop: ""
-    ultra: ""
-  mobile_strategy: ""
-  chrome_density: ""
-  body_density: ""
+  spacing_scale:
+    system: ""       # e.g., "golden ratio (φ = 1.618)"
+    baseline: ""     # which step = 1rem
+    steps: {}        # space-N: value
+  content_width: ""
+  page_padding: ""
+  vertical_rhythm:
+    headings: {}     # per-heading margin-block
+    blocks: ""       # sibling block spacing
+    code_blocks: ""
+    section_dividers: ""
+  page_structure: {} # header, main, footer padding
+  responsive: {}     # breakpoint rules
 
 borders:
-  stroke_weights: []
-  corner_radius: ""
-  divider_styles: []
-  containment_model: ""
+  tokens: {}         # border_width, border_width_thick, border_color, border_color_muted, radius
+  elements: {}       # per-element border treatments
 
 transitions:
-  duration:
-    fast: ""
-    normal: ""
-    slow: ""
-  easing: ""
-  reduced_motion: ""
+  tokens: {}         # duration_N, ease_default
+  elements: {}       # per-element transition assignments
+  scope: ""          # what gets transitions
 
-components: []  # defined after all foundational layers
+components: {}       # all UI components — populated after foundational layers are validated
 ```

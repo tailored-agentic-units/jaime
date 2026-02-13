@@ -1,1 +1,197 @@
-@layer colors {}
+@layer colors {
+
+  :root {
+    color-scheme: dark light;
+  }
+
+  body {
+    background-color: var(--surface-base);
+    color: var(--text-primary);
+  }
+
+  ::selection {
+    background-color: var(--surface-overlay);
+  }
+
+  /* Links — interactive blue, pink on hover */
+  a {
+    color: var(--color-interactive);
+  }
+
+  a:hover {
+    color: var(--color-emphasis);
+  }
+
+  /* Chrome — structural green */
+  nav,
+  footer {
+    color: var(--color-chrome);
+  }
+
+  /* Post titles — chrome green */
+  h1 { color: var(--color-chrome); }
+
+  /* Inline code — chrome green for distinction */
+  code { color: var(--color-chrome); }
+
+  /* Metadata — subdued */
+  time {
+    color: var(--text-secondary);
+  }
+
+  /* === Code surfaces === */
+
+  pre {
+    background-color: var(--surface-raised);
+  }
+
+  code {
+    background-color: var(--surface-raised);
+  }
+
+  pre code {
+    color: var(--text-primary);
+    background-color: transparent;
+  }
+
+  /* === Rouge syntax highlighting — Base16 mapping === */
+
+  .highlight {
+    background-color: var(--surface-raised);
+  }
+
+  .highlight .hll {
+    background-color: var(--surface-overlay);
+  }
+
+  /* Comments — base03, italic */
+  .highlight .c,
+  .highlight .cm,
+  .highlight .c1,
+  .highlight .cs,
+  .highlight .ch,
+  .highlight .cd { color: var(--base03); font-style: italic; }
+
+  /* Preprocessor — base0E (directive-like) */
+  .highlight .cp  { color: var(--base0E); }
+  .highlight .cpf { color: var(--base0B); }
+
+  /* Keywords — base0E (pink, structure lane) */
+  .highlight .k,
+  .highlight .kd,
+  .highlight .kn,
+  .highlight .kp,
+  .highlight .kr,
+  .highlight .kc { color: var(--base0E); }
+
+  /* Keyword.Type — base0A (identity lane) */
+  .highlight .kt { color: var(--base0A); }
+
+  /* Strings — base0B (green, data lane) */
+  .highlight .s,
+  .highlight .s1,
+  .highlight .s2,
+  .highlight .sb,
+  .highlight .sc,
+  .highlight .dl,
+  .highlight .sd,
+  .highlight .sh { color: var(--base0B); }
+
+  /* String interpolation — base09 (amber) */
+  .highlight .si,
+  .highlight .sx { color: var(--base09); }
+
+  /* Regex, escapes, symbols — base0C (teal) */
+  .highlight .sr,
+  .highlight .se,
+  .highlight .ss { color: var(--base0C); }
+
+  /* Functions — base0D (blue, identity lane) */
+  .highlight .nf,
+  .highlight .fm { color: var(--base0D); }
+
+  /* Classes, namespaces, decorators, attributes — base0A (gold) */
+  .highlight .nc,
+  .highlight .nn,
+  .highlight .nd,
+  .highlight .ni,
+  .highlight .na { color: var(--base0A); }
+
+  /* Tags — base08 (coral, data lane) */
+  .highlight .nt { color: var(--base08); }
+
+  /* Variables — base08 (coral) */
+  .highlight .nv,
+  .highlight .vi,
+  .highlight .vg,
+  .highlight .vc { color: var(--base08); }
+
+  /* Constants — base09 (amber) */
+  .highlight .no { color: var(--base09); }
+
+  /* Numbers, literals — base09 (amber) */
+  .highlight .m,
+  .highlight .mi,
+  .highlight .mf,
+  .highlight .mh,
+  .highlight .mo,
+  .highlight .mb,
+  .highlight .mx,
+  .highlight .il,
+  .highlight .l { color: var(--base09); }
+
+  /* Builtins — base0C (teal) */
+  .highlight .nb { color: var(--base0C); }
+
+  /* Builtin pseudo — base04 (muted) */
+  .highlight .bp { color: var(--base04); }
+
+  /* Operators — base05 (default fg) */
+  .highlight .o { color: var(--base05); }
+
+  /* Operator.Word — base0E (keyword-like: and/or/not) */
+  .highlight .ow { color: var(--base0E); }
+
+  /* Punctuation — base05 */
+  .highlight .p { color: var(--base05); }
+
+  /* Properties — base0A (identity) */
+  .highlight .py { color: var(--base0A); }
+
+  /* Labels — base0D (function-like) */
+  .highlight .nl { color: var(--base0D); }
+
+  /* Name.Other — base05 (generic fallback) */
+  .highlight .n,
+  .highlight .nx { color: var(--base05); }
+
+  /* Exceptions — base08 (error family) */
+  .highlight .ne { color: var(--base08); }
+
+  /* Errors — base08 */
+  .highlight .err { color: var(--base08); }
+
+  /* Diff */
+  .highlight .gd { color: var(--base08); }
+  .highlight .gi { color: var(--base0B); }
+  .highlight .gh { color: var(--base0D); font-weight: bold; }
+  .highlight .gu { color: var(--base0D); }
+
+  /* Generic prompt, output, traceback */
+  .highlight .gp { color: var(--base03); }
+  .highlight .go { color: var(--base05); }
+  .highlight .gt { color: var(--base08); }
+
+  /* Generic emphasis/strong */
+  .highlight .ge { font-style: italic; }
+  .highlight .gs { font-weight: bold; }
+
+  /* Whitespace */
+  .highlight .w { color: var(--base05); }
+
+  /* Other/deprecated — base0F (mauve, low-priority) */
+  .highlight .x { color: var(--base0F); }
+
+  /* Line numbers */
+  .highlight .linenos { color: var(--base03); }
+}

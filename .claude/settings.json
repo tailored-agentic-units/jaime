@@ -11,6 +11,7 @@
       "WebFetch(domain:jekyllrb.com)",
       "WebFetch(domain:github.blog)",
       "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_snapshot",
       "mcp__playwright__browser_take_screenshot",
       "mcp__playwright__browser_evaluate",
       "mcp__playwright__browser_close"

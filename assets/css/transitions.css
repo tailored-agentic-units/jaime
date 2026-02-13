@@ -1,1 +1,6 @@
-@layer transitions {}
+@layer transitions {
+
+  a {
+    transition: color var(--duration-100) var(--ease-default);
+  }
+}

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Validate user-supplied Rouge theme names and generate the `syntax.css` file for the blog's dark and light modes.
+Validate user-supplied Rouge theme names and generate the `syntax.css` file for the blog's dark and light modes. Used by the **Quick Start** theme strategy during `init`.
 
 ## Available Themes
 
@@ -54,9 +54,27 @@ Write the result to `assets/css/syntax.css`.
 
 The Rouge theme output includes background and foreground colors for the `.highlight` class. Extract these values to inform the `tokens.css` color palette:
 
-- **--bg** — derived from `.highlight { background: ... }`
-- **--fg** — derived from `.highlight { color: ... }`
+- **--surface-base** — derived from `.highlight { background: ... }` (or a slightly darker variant)
+- **--surface-raised** — the `.highlight { background: ... }` value itself
+- **--text-primary** — derived from `.highlight { color: ... }`
 
-These provide a starting point for the token palette. Read the source blog's `assets/css/tokens.css` and replace the color values in the `prefers-color-scheme: dark` and `prefers-color-scheme: light` blocks with colors derived from the chosen Rouge themes. Keep the structural tokens (fonts, spacing, radius, widths) unchanged. The remaining color tokens (--bg-soft, --bg-raised, --fg-dim, --fg-muted, --border, --accent, --link, --link-visited) should be derived as complementary values that pair well with the Rouge theme's palette.
+These provide a starting point for the token palette. Read the source blog's `assets/css/tokens.css` and replace the color values with colors derived from the chosen Rouge themes. Keep the structural tokens (fonts, spacing, radius, widths) unchanged.
+
+The remaining semantic tokens should be derived as complementary values from the Rouge palette:
+
+- **--surface-overlay** — slightly lighter than `--surface-raised`
+- **--text-secondary** — midpoint between `--text-primary` and `--text-muted`
+- **--text-muted** — subdued foreground for comments, hints
+- **--border-color** — matches `--surface-overlay`
+- **--border-color-muted** — matches `--surface-raised`
+- **--color-chrome** — a distinctive accent from the Rouge palette for structural elements (nav, headings, code)
+- **--color-interactive** — an accent for links and interactive states
+- **--color-emphasis** — an accent for highlights, tags, and callouts
+
+The theme colors (`--color-chrome`, `--color-interactive`, `--color-emphasis`) are defined as direct hex values in `:root`. Base16 accent slots that correspond to a theme color should reference `var(--color-*)` rather than duplicating the hex value. See `base16-schema.md` for the full architecture.
 
 The user can customize the full token palette after init by editing `assets/css/tokens.css`.
+
+## Alternative: Custom Theme
+
+For full creative control over the color system, use the **Custom Theme** strategy (Option B in init) instead. This invokes the `theme-design` skill for a bottom-up layer design process with visual validation at each step.

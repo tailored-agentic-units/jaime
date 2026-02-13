@@ -34,9 +34,13 @@ Use this skill when designing or modifying the blog's visual theme. This include
 
 Design themes are built bottom-up. Each layer is validated in isolation before the next is introduced. No layer should reference concepts from a later layer. Cohesion comes from the system, not from individual component decisions being clever.
 
-**Key lesson (from Industrial Tech):** Do not jump from philosophy to component-level decisions. Do not make opinionated component choices before the foundational system is tested. Each layer must be visually validated before the next is introduced.
+**Key lesson:** Do not jump from philosophy to component-level decisions. Do not make opinionated component choices before the foundational system is tested. Each layer must be visually validated before the next is introduced.
 
 **Inheritance principle:** Layers inherit the foundation — only override when deviating. If the reset establishes a baseline value (e.g. `line-height: 1.6`), higher layers should not reassert it with a token just because a token exists. Tokens exist for when properties need to deviate from the default. Let the foundation set the standard.
+
+**Theme colors as source of truth:** Semantic color tokens (`--color-chrome`, `--color-interactive`, `--color-emphasis`) are defined with direct hex values — they are the foundation. Base16 accent slots reference them via `var()` where applicable, making base16 an extension of the theme. This allows base16 slots to be freely remapped between dark and light modes without conditional overrides on semantic tokens.
+
+**Component overrides are valid:** The component layer can override decisions from lower layers when the semantic context requires it. For example, the reset may preserve browser list defaults (`disc`/`decimal`), but a `.post-list` component appropriately strips list-style. Override at the most specific layer, not the most general.
 
 ## Commands
 

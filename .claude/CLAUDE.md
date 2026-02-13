@@ -12,7 +12,7 @@ Jekyll 4.x blog deployed to GitHub Pages via GitHub Actions. Hosted at `https://
 - **Pagination**: jekyll-paginate-v2 with autopages for category index pages
 - **CSS**: Cascade layers in `assets/css/` — reset, tokens, typography, colors, layout, borders, transitions, components. Entry point is `index.css`. One file per layer.
 - **Syntax highlighting**: Base16-derived palette (dark + light) via `prefers-color-scheme`, defined in `colors.css`
-- **Design system**: Graphic Realism theme — spec at `.claude/skills/theme-design/themes/graphic-realism/spec.yaml`
+- **Design system**: Tau Ceti theme — spec at `.claude/skills/theme-design/themes/tau-ceti/spec.yaml`
 - **Media**: Gitignored `assets/media/` for local staging. Published media goes to GitHub Releases with tag `post/{slug}`.
 
 ## Post Creation

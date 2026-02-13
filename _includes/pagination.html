@@ -1,15 +1,5 @@
 <nav class="pagination" aria-label="Pagination">
-  {% if paginator.previous_page %}
-  <a href="{{ paginator.previous_page_path | relative_url }}" rel="prev">&larr; Newer</a>
-  {% else %}
-  <span class="disabled">&larr; Newer</span>
-  {% endif %}
-
+  <span>{% if paginator.previous_page %}<a href="{{ paginator.previous_page_path | relative_url }}" rel="prev">&larr; Newer</a>{% endif %}</span>
   <span class="page-number">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-
-  {% if paginator.next_page %}
-  <a href="{{ paginator.next_page_path | relative_url }}" rel="next">Older &rarr;</a>
-  {% else %}
-  <span class="disabled">Older &rarr;</span>
-  {% endif %}
+  <span>{% if paginator.next_page %}<a href="{{ paginator.next_page_path | relative_url }}" rel="next">Older &rarr;</a>{% endif %}</span>
 </nav>

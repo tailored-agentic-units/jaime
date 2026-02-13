@@ -61,12 +61,6 @@
     text-wrap: balance;
   }
 
-  /* Strip list styles */
-  ul,
-  ol {
-    list-style: none;
-  }
-
   /* Strip anchor defaults */
   a {
     color: inherit;

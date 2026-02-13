@@ -5,8 +5,12 @@ layout: default
 <section class="home">
   {{ content }}
 
+  {% if paginator.total_pages > 1 %}
+  {% include pagination.html %}
+  {% endif %}
+
   <ul class="post-list">
-    {% for post in site.posts %}
+    {% for post in paginator.posts %}
     {% include post-card.html %}
     {% endfor %}
   </ul>

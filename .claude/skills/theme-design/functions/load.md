@@ -8,7 +8,7 @@ Load a theme spec into CSS assets — equivalent to loading a save file.
 design load <spec-dir> [target-dir]
 ```
 
-- `<spec-dir>` — path to the theme directory containing `spec.yaml` (e.g., `.claude/skills/theme-design/themes/graphic-realism/`)
+- `<spec-dir>` — path to the theme directory containing `spec.yaml` (e.g., `.claude/skills/theme-design/themes/tau-ceti/`)
 - `[target-dir]` — optional path to the CSS assets directory (defaults to `assets/css/`)
 
 ## What It Does
@@ -50,8 +50,8 @@ The spec is declarative — it describes *what* was decided, not the literal CSS
 
 ```
 # Load the graphic realism theme into the default assets directory
-design load .claude/skills/theme-design/themes/graphic-realism/
+design load .claude/skills/theme-design/themes/tau-ceti/
 
 # Load into a different directory (e.g., for comparison)
-design load .claude/skills/theme-design/themes/graphic-realism/ assets/css-preview/
+design load .claude/skills/theme-design/themes/tau-ceti/ assets/css-preview/
 ```
