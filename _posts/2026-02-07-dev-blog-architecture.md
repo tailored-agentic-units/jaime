@@ -29,8 +29,8 @@ A stylized developer blog built on [GitHub Pages](https://pages.github.com/) wit
 | Static site generator | Jekyll 4.x | Custom Actions workflow, processes markdown, respects frontmatter, allows raw HTML |
 | Markdown engine | kramdown (GFM) | Jekyll default, supports fenced code blocks with language hints |
 | Syntax highlighting | Rouge | No JS dependency, generates static CSS via `rougify` |
-| Syntax theme | GitHub (dark + light) | System-responsive via `prefers-color-scheme`, clean palette matching GitHub's native highlighting |
-| CSS | Vanilla, cascade layers | Full control, layered architecture (tokens, reset, theme, layout, components, syntax) |
+| Syntax theme | Base16-derived (dark + light) | System-responsive via `prefers-color-scheme`, custom palette designed through the theme-design skill |
+| CSS | Vanilla, cascade layers | Full control, 8-layer architecture (reset, tokens, typography, colors, layout, borders, transitions, components) |
 | Media hosting | GitHub Releases | Per-post release bundles, stable download URLs, zero git history bloat |
 | Deployment | GitHub Actions | Push to `main` triggers build and deploy to Pages |
 | Automation | Claude Code skill plugin | Single skill, sub-command architecture with context layer |
@@ -45,16 +45,21 @@ jaime/
 │   └── workflows/
 │       └── pages.yml              # Jekyll build + deploy to Pages
 ├── .claude/
-│   └── context/
-│       └── style-profile.md       # Generated writing voice calibration
+│   ├── CLAUDE.md                  # Project-level Claude Code instructions
+│   ├── context/
+│   │   └── style-profile.md       # Generated writing voice calibration
+│   └── skills/                    # Skill plugins (dev-blog, theme-design)
 ├── _config.yml
 ├── _layouts/
 │   ├── default.html               # Base HTML5 shell (head, nav, footer)
 │   ├── home.html                  # Index page with post listing
-│   └── post.html                  # Individual blog entry (all content types)
+│   ├── post.html                  # Individual blog entry (all content types)
+│   └── category.html              # Category index with pagination
 ├── _includes/
 │   ├── head.html                  # Meta, CSS, SEO, feed
-│   ├── nav.html                   # Site navigation
+│   ├── nav.html                   # Site navigation with category dropdown
+│   ├── post-card.html             # Reusable post listing card
+│   ├── pagination.html            # Prev/next page controls
 │   └── video.html                 # Reusable video tag partial
 ├── _posts/                        # Published markdown (date-prefixed)
 ├── _drafts/                       # Authoring target, excluded from production
@@ -62,15 +67,17 @@ jaime/
 ├── assets/
 │   └── css/
 │       ├── index.css              # Layer order declaration + imports
-│       ├── tokens.css             # Design tokens (colors, spacing, type scale)
 │       ├── reset.css              # Modern CSS reset
-│       ├── theme.css              # Body defaults from tokens
-│       ├── layout.css             # Page structure (nav, main, footer)
-│       ├── components.css         # Post list, article, tags, prose, tables
-│       └── syntax.css             # Rouge GitHub dark/light
+│       ├── tokens.css             # Design tokens (colors, spacing, type scale)
+│       ├── typography.css         # Font assignments, heading scale, code
+│       ├── colors.css             # Semantic color mapping + syntax highlighting
+│       ├── layout.css             # Page structure, vertical rhythm, spacing
+│       ├── borders.css            # Border styles for tables, dividers, code
+│       ├── transitions.css        # Link and interactive element transitions
+│       └── components.css         # Nav, post cards, tags, pagination
+├── 404.html                       # Custom 404 page
 ├── Gemfile
-├── index.md                       # Home page
-└── CLAUDE.md                      # Project-level Claude Code instructions
+└── index.md                       # Home page
 ```
 
 ### Key Structural Decisions
@@ -78,7 +85,7 @@ jaime/
 - **`_drafts/`** is the default authoring target. Jekyll ignores drafts in production, creating a review gate before publish.
 - **`_capture/`** is excluded from the Jekyll build via `_config.yml`. Capture buckets live in the repo for traceability but never render.
 - **`assets/media/`** is gitignored entirely. It exists only as a local staging area — on publish, media is uploaded to a GitHub Release and the directory is created on demand.
-- **One `post` layout** handles all content types. Differentiation between updates and concepts is expressed through frontmatter tags and categories, not separate templates.
+- **One `post` layout** handles all content types. Differentiation is expressed through frontmatter tags and categories, not separate templates. Category index pages are auto-generated via jekyll-paginate-v2 autopages.
 
 ---
 
@@ -88,52 +95,67 @@ The stylesheet is organized into cascade layers, with each layer defined in its 
 
 ```css
 /* index.css */
-@layer tokens, reset, theme, layout, components, syntax;
+@layer reset, tokens, typography, colors, layout, borders, transitions, components;
 
-@import url("./tokens.css");
 @import url("./reset.css");
-@import url("./theme.css");
+@import url("./tokens.css");
+@import url("./typography.css");
+@import url("./colors.css");
 @import url("./layout.css");
+@import url("./borders.css");
+@import url("./transitions.css");
 @import url("./components.css");
-@import url("./syntax.css");
 ```
 
 ### Layer Responsibilities
 
 | Layer | Purpose |
 |-------|---------|
-| **tokens** | CSS custom properties — colors, spacing, type scale, fonts. Light/dark variants via `prefers-color-scheme` |
 | **reset** | Modern CSS reset — box-sizing, margin removal, media defaults, text wrapping |
-| **theme** | Body-level defaults applied from tokens (font family, background, foreground) |
-| **layout** | Page structure — content width, nav, footer, margin/padding |
-| **components** | Post list, article prose, tags, tables, code blocks, blockquotes |
-| **syntax** | Rouge-generated GitHub syntax highlighting (dark + light) |
+| **tokens** | CSS custom properties — theme colors, Base16 palette, spacing, type scale, fonts. Light/dark variants via `prefers-color-scheme` |
+| **typography** | Font assignments per voice (body, chrome, code), heading scale, line heights |
+| **colors** | Semantic color mapping for surfaces, text, links, and Rouge syntax highlighting classes |
+| **layout** | Page structure — content width, vertical rhythm, heading spacing, responsive breakpoints |
+| **borders** | Border styles for tables, horizontal rules, code blocks, blockquotes |
+| **transitions** | Link hover/focus transitions and interactive element effects |
+| **components** | Nav dropdown, post cards, tags, pagination, post headers |
 
 ### Light and Dark Mode
 
-Color tokens are derived from GitHub's interface palette and toggle automatically based on system preference:
+The color system follows a "theme colors as source of truth" architecture. Three role-based theme colors are defined as direct hex values, and Base16 accent slots derive from them where applicable:
 
 ```css
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0d1117;
-    --fg: #c9d1d9;
-    --accent: #58a6ff;
-    /* ... */
-  }
-}
+:root {
+  /* Theme colors — source of truth */
+  --color-chrome: #4cd48a;
+  --color-interactive: #5e8ef0;
+  --color-emphasis: #e464a0;
 
+  /* Base16 accents — derived from theme where applicable */
+  --base0B: var(--color-chrome);
+  --base0D: var(--color-interactive);
+  --base0E: var(--color-emphasis);
+  /* ... remaining accents use independent values */
+}
+```
+
+Light mode overrides the theme colors and freely remaps Base16 accent slots without conditional logic:
+
+```css
 @media (prefers-color-scheme: light) {
   :root {
-    --bg: #ffffff;
-    --fg: #24292f;
-    --accent: #0969da;
-    /* ... */
+    --color-chrome: #0e8848;
+    --color-interactive: #1858d0;
+    --color-emphasis: #d02878;
+
+    /* Accents remapped for light mode balance */
+    --base0A: var(--color-emphasis);  /* pink — types */
+    --base0E: #5a38c0;               /* indigo — keywords */
   }
 }
 ```
 
-Syntax highlighting follows the same pattern — `syntax.css` wraps the GitHub dark and light Rouge output in matching `prefers-color-scheme` media queries.
+Syntax highlighting maps Rouge token classes to Base16 slots in `colors.css`, so both dark and light modes receive appropriate highlighting from the same set of rules.
 
 ---
 
