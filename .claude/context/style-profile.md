@@ -77,6 +77,13 @@ Generated from analysis of 5 weekly update emails and 3 technical concept docume
 - utilize (uses "use" instead)
 - synergy, paradigm, disrupt (corporate buzzwords absent entirely)
 - basically, simply, just (minimizes hedging language)
+- production-ready (prefer "in place", "complete", or "implemented")
+
+### Narrative Continuity
+
+- Don't re-cover topics from previous posts — each post advances the narrative forward
+- Focus on subsystem design and how things function over supporting fixes (test adjustments, CI tweaks) unless explicitly relevant to the story
+- Audience calibration: leadership gets impact framing, engineers get architectural design
 
 ---
 
