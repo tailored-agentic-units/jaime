@@ -28,6 +28,12 @@ allowed-tools:
   - "Bash(rougify *)"
   - "Bash(mise *)"
   - "Bash(which *)"
+  - Edit
+  - Glob
+  - Grep
+  - Read
+  - Write
+  - "mcp__playwright__*"
 ---
 
 # Dev Blog Workflow
@@ -89,7 +95,7 @@ layout: post
 title: "Post Title"
 date: YYYY-MM-DD HH:MM:SS
 tags: [tag-1, tag-2, tag-3]
-category: update | concept
+category: progress | engineering | announcement | future
 excerpt: "One-sentence summary for the post listing."
 ---
 ```

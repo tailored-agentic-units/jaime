@@ -1,0 +1,46 @@
+@layer borders {
+
+  /* === Section dividers === */
+
+  hr {
+    border: none;
+    border-top: var(--border-width) solid var(--border-color);
+  }
+
+  /* === Blockquotes — chrome accent === */
+
+  blockquote {
+    border-left: var(--border-width-thick) solid var(--color-emphasis);
+  }
+
+  /* === Code blocks — subtle frame === */
+
+  .highlight pre,
+  pre:not(.highlight pre) {
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius);
+  }
+
+  /* === Inline code === */
+
+  code:not(pre code) {
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius);
+  }
+
+  /* === Tables — minimal === */
+
+  table {
+    border-top: var(--border-width) solid var(--border-color);
+    border-bottom: var(--border-width) solid var(--border-color);
+  }
+
+  th {
+    border-bottom: var(--border-width) solid var(--text-muted);
+  }
+
+  tr + tr {
+    border-top: var(--border-width) solid var(--border-color-muted);
+  }
+
+}

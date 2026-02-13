@@ -1,63 +1,127 @@
 @layer tokens {
-  :root {
-    color-scheme: dark light;
 
+  :root {
+    /* Font stacks */
     --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-      Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      Roboto, "Noto Sans", "Liberation Sans", Arial, sans-serif;
     --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo,
       Consolas, "DejaVu Sans Mono", monospace;
 
-    --space-1: 0.25rem;
-    --space-2: 0.5rem;
-    --space-3: 0.75rem;
-    --space-4: 1rem;
-    --space-6: 1.5rem;
-    --space-8: 2rem;
-    --space-12: 3rem;
-    --space-16: 4rem;
-
-    --text-sm: 0.875rem;
+    /* Type scale — minor third (1.2) */
+    --text-xs: 0.694rem;
+    --text-sm: 0.833rem;
     --text-base: 1rem;
-    --text-lg: 1.125rem;
-    --text-xl: 1.25rem;
-    --text-2xl: 1.5rem;
-    --text-3xl: 1.875rem;
+    --text-lg: 1.2rem;
+    --text-xl: 1.44rem;
+    --text-2xl: 1.728rem;
+    --text-3xl: 2.074rem;
 
-    --radius: 0.25rem;
-    --content-width: 65ch;
+    /* Line heights */
+    --leading-tight: 1.1;
+    --leading-snug: 1.25;
+    --leading-normal: 1.45;
+    --leading-relaxed: 1.6;
+
+    /* Font weights */
+    --weight-normal: 400;
+    --weight-bold: 700;
+
+    /* Code size — mono in sans context needs ~10% reduction */
+    --code-size: 0.9rem;
+
+    /* Letter spacing */
+    --tracking-tight: 0;
+    --tracking-wide: 0.05rem;
+
+    /* === Color palette — dark mode default === */
+
+    /* Theme colors — source of truth */
+    --color-chrome: #4cd48a;
+    --color-interactive: #5e8ef0;
+    --color-emphasis: #e464a0;
+
+    /* Base16 neutrals — cool blue-gray, gunmetal */
+    --base00: #0c1018;
+    --base01: #1c2535;
+    --base02: #1f2837;
+    --base03: #3c465c;
+    --base04: #5b6780;
+    --base05: #b0bcd0;
+    --base06: #d0d9e8;
+    --base07: #edf1f7;
+
+    /* Base16 accents — derived from theme where applicable */
+    --base08: #ef6b82;              /* coral-pink   — variables, errors, tags    */
+    --base09: #ea9c58;              /* amber        — constants, numbers         */
+    --base0A: #ecd050;              /* electric yellow — types, classes, attributes */
+    --base0B: var(--color-chrome);  /* acid green   — strings, diff inserted     */
+    --base0C: #48bece;              /* bright teal  — regex, escapes, builtins   */
+    --base0D: var(--color-interactive); /* electric blue — functions, methods     */
+    --base0E: var(--color-emphasis);    /* hot pink  — keywords, storage          */
+    --base0F: #946894;              /* dusty mauve  — embedded, deprecated       */
+
+    /* Semantic surfaces */
+    --surface-base: var(--base00);
+    --surface-raised: var(--base01);
+    --surface-overlay: var(--base02);
+
+    /* Semantic text */
+    --text-primary: var(--base05);
+    --text-secondary: var(--base04);
+    --text-muted: var(--base03);
+
+    /* === Spacing scale — golden ratio (φ = 1.618) === */
+    --space-0: 0.0625rem;
+    --space-1: 0.125rem;
+    --space-2: 0.25rem;
+    --space-3: 0.5rem;
+    --space-4: 1rem;
+    --space-5: 1.618rem;
+    --space-6: 2.618rem;
+    --space-7: 4.236rem;
+
+    /* Layout */
+    --content-width: 50rem;
+    --page-padding: var(--space-4);
+
+    /* Borders */
+    --border-width: 1px;
+    --border-width-thick: 3px;
+    --border-color: var(--base02);
+    --border-color-muted: var(--base01);
+    --radius: 2px;
+
+    /* Transitions */
+    --duration-75: 75ms;
+    --duration-100: 100ms;
+    --ease-default: ease-out;
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0d1117;
-      --bg-soft: #161b22;
-      --bg-raised: #21262d;
-      --fg: #c9d1d9;
-      --fg-dim: #8b949e;
-      --fg-muted: #6e7681;
-      --border: #30363d;
-
-      --accent: #58a6ff;
-      --accent-dim: #388bfd;
-      --link: #58a6ff;
-      --tag-bg: #6e7681;
-    }
-  }
-
+  /* Light mode overrides */
   @media (prefers-color-scheme: light) {
     :root {
-      --bg: #ffffff;
-      --bg-soft: #f6f8fa;
-      --bg-raised: #eaeef2;
-      --fg: #24292f;
-      --fg-dim: #57606a;
-      --fg-muted: #6e7781;
-      --border: #d0d7de;
+      /* Theme colors */
+      --color-chrome: #0e8848;
+      --color-interactive: #1858d0;
+      --color-emphasis: #d02878;
 
-      --accent: #0969da;
-      --accent-dim: #218bff;
-      --link: #0969da;
-      --tag-bg: #6e7781;
+      /* Base16 neutrals — inverted cool gray */
+      --base00: #f6f8fb;
+      --base01: #ebeef5;
+      --base02: #dce1ec;
+      --base03: #858da5;
+      --base04: #5a6580;
+      --base05: #2a3348;
+      --base06: #1a2238;
+      --base07: #0d1420;
+
+      /* Base16 accents — pink/indigo swapped for light mode balance */
+      --base08: #d83050;
+      --base09: #c06818;
+      --base0A: var(--color-emphasis);  /* pink — types, classes, attributes */
+      --base0C: #0888a0;
+      --base0E: #5a38c0;               /* indigo — keywords, storage        */
+      --base0F: #8838a0;
     }
   }
 }

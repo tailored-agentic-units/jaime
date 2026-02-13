@@ -4,12 +4,14 @@
   {% include head.html %}
 </head>
 <body>
-  {% include nav.html %}
+  <header>
+    {% include nav.html %}
+  </header>
   <main>
     {{ content }}
   </main>
   <footer>
-    <p>&copy; {{ site.time | date: "%Y" }} {{ site.author }}</p>
+    <a href="https://github.com/tailored-agentic-units" target="_blank" rel="noopener noreferrer"><strong>GitHub &mdash; TAU</strong></a>
   </footer>
 </body>
 </html>

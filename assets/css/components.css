@@ -1,277 +1,167 @@
 @layer components {
 
-  /* --- Post list --- */
+  /* === Nav === */
 
-  .post-list {
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-title {
+    color: var(--text-primary);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
+  }
+
+  .nav-menu {
+    position: relative;
+  }
+
+  .nav-menu summary {
+    cursor: pointer;
     list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
+    color: var(--color-interactive);
   }
 
-  /* --- Post card --- */
+  .nav-menu summary::-webkit-details-marker {
+    display: none;
+  }
 
-  .post-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-    background-color: var(--bg-soft);
+  .nav-menu-list {
+    position: absolute;
+    right: 0;
+    margin-block-start: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background-color: var(--surface-raised);
+    border: var(--border-width) solid var(--border-color);
     border-radius: var(--radius);
-    padding: var(--space-4);
+    list-style: none;
   }
 
-  .post-card-title {
-    font-family: var(--font-mono);
-    font-size: var(--text-xl);
-    font-weight: 600;
-    text-decoration: none;
+  @media (prefers-reduced-motion: no-preference) {
+    .nav-menu::details-content {
+      transition: content-visibility var(--duration-75) allow-discrete;
+    }
+
+    .nav-menu .nav-menu-list {
+      clip-path: inset(0 0 100% 0);
+      transition: clip-path var(--duration-75) linear;
+    }
+
+    .nav-menu[open] .nav-menu-list {
+      clip-path: inset(0);
+    }
   }
 
-  .post-card-title:hover {
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
+  .nav-menu-list li + li {
+    margin-block-start: var(--space-3);
   }
 
-  .post-card-meta {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-family: var(--font-mono);
+  .nav-menu-list a.active {
+    color: var(--color-chrome);
   }
 
-  .post-card-category {
-    font-weight: 700;
-    font-size: var(--text-sm);
-    text-decoration: none;
-    text-transform: uppercase;
-    color: var(--accent);
-    line-height: 1;
-  }
-
-  .post-card-category:visited { color: var(--accent); }
-  .post-card-category:hover { text-decoration: underline; }
-
-  .post-card-separator {
-    color: var(--fg-muted);
-    font-size: var(--text-sm);
-    line-height: 1;
-  }
-
-  .post-card-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-1);
-    align-items: center;
-  }
-
-  .post-card time {
-    font-size: var(--text-sm);
-    color: var(--fg-dim);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .post-card-excerpt {
-    color: var(--fg-dim);
-    font-size: var(--text-base);
-    margin-top: var(--space-2);
-    margin-bottom: 0;
-  }
-
-  /* --- Post article --- */
-
-  .post header {
-    margin-bottom: var(--space-8);
-  }
-
-  .post header h1 {
-    font-size: var(--text-3xl);
-    margin-bottom: var(--space-2);
-  }
-
-  .post header time {
-    font-size: var(--text-sm);
-    color: var(--fg-muted);
-  }
+  /* === Tags === */
 
   .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-2);
-    margin-top: var(--space-3);
+    gap: var(--space-3);
   }
 
   .tag {
-    font-size: var(--text-sm);
-    color: var(--fg-dim);
-    background-color: var(--bg-raised);
-    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
     text-transform: uppercase;
-    padding: 0.125rem var(--space-2);
-    border-radius: 0.15rem;
-    line-height: 1.4;
-  }
-
-  /* --- Prose content (markdown output) --- */
-
-  .post h2 {
-    font-size: var(--text-2xl);
-    margin-top: var(--space-12);
-    margin-bottom: var(--space-4);
-    padding-bottom: var(--space-2);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .post h3 {
-    font-size: var(--text-xl);
-    margin-top: var(--space-8);
-    margin-bottom: var(--space-3);
-  }
-
-  .post h4,
-  .post h5,
-  .post h6 {
-    font-size: var(--text-lg);
-    margin-top: var(--space-6);
-    margin-bottom: var(--space-2);
-  }
-
-  .post p {
-    margin-bottom: var(--space-4);
-  }
-
-  .post ul,
-  .post ol {
-    margin-bottom: var(--space-4);
-    padding-left: var(--space-6);
-  }
-
-  .post li {
-    margin-bottom: var(--space-1);
-  }
-
-  .post li > ul,
-  .post li > ol {
-    margin-top: var(--space-1);
-    margin-bottom: 0;
-  }
-
-  .post blockquote {
-    border-left: 3px solid var(--accent);
-    padding-left: var(--space-4);
-    color: var(--fg-dim);
-    margin-bottom: var(--space-4);
-  }
-
-  .post hr {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: var(--space-8) 0;
-  }
-
-  .post strong {
-    font-weight: 600;
-  }
-
-  /* --- Inline code --- */
-
-  .post code {
-    font-size: 0.9em;
-    background-color: var(--bg-raised);
-    padding: 0.15em 0.35em;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-emphasis);
+    background-color: var(--surface-raised);
     border-radius: var(--radius);
+    padding: var(--space-0) var(--space-2);
   }
 
-  .post pre code {
-    background: none;
-    padding: 0;
-    font-size: var(--text-sm);
+  /* === Post List === */
+
+  .post-list {
+    list-style: none;
+    padding-inline-start: 0;
   }
 
-  /* --- Code blocks --- */
+  /* === Post Card === */
 
-  .post .highlight {
-    border-radius: var(--radius);
-    margin-bottom: var(--space-4);
-    overflow-x: auto;
+  .post-card + .post-card {
+    margin-block-start: var(--space-5);
   }
 
-  .post .highlight pre {
-    padding: var(--space-4);
-    overflow-x: auto;
-    line-height: 1.5;
+  .post-card > hr {
+    display: none;
   }
 
-  /* --- Tables --- */
-
-  .post table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: var(--space-4);
-    font-size: var(--text-sm);
+  .post-card + .post-card > hr {
     display: block;
-    overflow-x: auto;
+    margin-block: 0 var(--space-5);
   }
 
-  .post th {
-    text-align: left;
-    font-weight: 600;
-    padding: var(--space-2) var(--space-3);
-    border-bottom: 2px solid var(--border);
-    white-space: nowrap;
+  .post-card-title {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
   }
 
-  .post td {
-    padding: var(--space-2) var(--space-3);
-    border-bottom: 1px solid var(--border);
-    vertical-align: top;
+  .post-card-meta {
+    margin-block-start: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
   }
 
-  .post tr:last-child td {
-    border-bottom: none;
+  .post-card .tags {
+    margin-block-start: var(--space-2);
   }
 
-  /* --- Images --- */
-
-  .post img {
-    border-radius: var(--radius);
-    margin-bottom: var(--space-4);
+  .post-card-excerpt {
+    margin-block-start: var(--space-2);
   }
 
-  /* --- Category page --- */
+  /* === Post Header === */
 
-  .category-title {
-    font-size: var(--text-2xl);
-    margin-bottom: var(--space-6);
+  .post-header {
+    margin-block-end: var(--space-5);
   }
 
-  /* --- Pagination --- */
+
+  .post-header-meta {
+    margin-block-start: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .post-header .tags {
+    margin-block-start: var(--space-2);
+  }
+
+  /* === Pagination === */
 
   .pagination {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: center;
-    gap: var(--space-4);
-    margin-top: var(--space-8);
-    padding-top: var(--space-4);
-    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
     font-size: var(--text-sm);
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    margin-block-end: var(--space-5);
   }
 
-  .pagination a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-
-  .pagination a:hover {
-    text-decoration: underline;
-  }
-
-  .pagination .disabled {
-    color: var(--fg-muted);
+  .pagination > span:last-child {
+    text-align: right;
   }
 
   .pagination .page-number {
-    color: var(--fg-dim);
+    color: var(--text-primary);
   }
 }

@@ -2,6 +2,7 @@
 .bundle/
 .jekyll-cache/
 .jekyll-metadata
+.playwright-mcp
 .sass-cache/
 _capture/.playwright
 _site/

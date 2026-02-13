@@ -38,6 +38,7 @@ exclude:
   - .claude
   - .github
   - .playwright
+  - .playwright-mcp
   - _capture
   - .mcp.json
   - CLAUDE.md

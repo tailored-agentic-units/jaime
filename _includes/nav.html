@@ -1,12 +1,17 @@
-<nav>
+<nav aria-label="Main">
   <a href="{{ '/' | relative_url }}" class="nav-title">{{ site.title }}</a>
-  <div class="nav-links">
-    {% assign sorted_cats = site.categories | sort %}
-    {% for cat in sorted_cats %}
-    <a href="{{ '/categories/' | append: cat[0] | append: '/' | relative_url }}"
-       {% if page.title == cat[0] %}class="active"{% endif %}>
-      {{ cat[0] | capitalize }}
-    </a>
-    {% endfor %}
-  </div>
+  <details class="nav-menu">
+    <summary>Categories</summary>
+    <ul class="nav-menu-list">
+      {% assign sorted_cats = site.categories | sort %}
+      {% for cat in sorted_cats %}
+      <li>
+        <a href="{{ '/categories/' | append: cat[0] | append: '/' | relative_url }}"
+           {% if page.title == cat[0] %}class="active"{% endif %}>
+          {{ cat[0] | capitalize }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </details>
 </nav>

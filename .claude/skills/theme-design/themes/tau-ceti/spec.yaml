@@ -1,0 +1,279 @@
+theme:
+  name: "Tau Ceti"
+  description: >
+    Inspired by the design language and UI structure of Bungie's Marathon.
+    A dynamic, expressive, and clean future sci-fi / cyberpunk aesthetic.
+    Rooted in the principle of "freedom in limitation through defined
+    executional constraints." Simplified/deconstructed graphic design on
+    the structural side; realistic proportionality and clean reading
+    environment on the content side. Not a direct reproduction — an
+    adaptation of the aesthetic's principles for a dev blog context.
+  references:
+    - https://80.lv/articles/marathon-art-director-shares-the-team-s-creative-influences
+    - https://www.marathonthegame.com/
+    - Joseph Cross Twitter thread on "Graphic Realism" production term
+  influences:
+    - "Marathon (Bungie, 2026) — primary visual reference"
+    - "Mirror's Edge — clean geometric spaces, bold color fields"
+    - "Ghost in the Shell — cyberpunk institutional aesthetics"
+    - "The Designers Republic — graphic design as interface language"
+    - "Nike design culture — bold typography, sport-functional aesthetics"
+    - "Alberto Mielgo / Into the Spider-Verse — expressive visual risks"
+    - "Katsuhiro Otomo — manga-scale sci-fi detail"
+    - "Wipeout — Y2K futurism, anti-gravity racing UI"
+    - "Formula 1 / MotoGP — technical livery, sponsor typography systems"
+
+# Layers below are populated as each design stage is validated.
+# The spec is the source of truth — values are written here only
+# after visual evaluation and alignment.
+
+reset:
+  box_model: "border-box on *, *::before, *::after"
+  margin: "zero on *:not(dialog) — preserves native dialog centering"
+  padding: "zero on *, *::before, *::after"
+  body:
+    min_height: "100dvh"
+    line_height: 1.6
+    font_size: "100%"
+    font_smoothing: "-webkit-font-smoothing antialiased"
+    text_rendering: "optimizeLegibility"
+  form_inheritance: "input, button, textarea, select inherit font"
+  media_defaults: "img, picture, video, canvas, svg: display block, max-width 100%"
+  text_wrapping:
+    paragraphs: "text-wrap pretty, overflow-wrap break-word"
+    headings: "text-wrap balance, overflow-wrap break-word"
+  list_normalization: "browser defaults preserved (disc/decimal) — component layer strips where needed"
+  anchor_normalization: "color inherit, text-decoration none"
+  table_normalization: "border-collapse collapse, border-spacing 0"
+  scroll_behavior: "smooth on html, disabled via prefers-reduced-motion"
+  explicit_exclusions:
+    - "no colors"
+    - "no spacing beyond zero"
+    - "no layout properties"
+    - "no border styles"
+    - "no font stacks or type scale"
+    - "no component-level rules"
+
+tokens:
+  font_stacks:
+    sans-serif: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans', 'Liberation Sans', Arial, sans-serif"
+    monospace: "ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace"
+  type_scale:
+    ratio: "minor third (1.2)"
+    steps: "xs 0.694rem, sm 0.833rem, base 1rem, lg 1.2rem, xl 1.44rem, 2xl 1.728rem, 3xl 2.074rem"
+  line_heights: "tight 1.1, snug 1.25, normal 1.45, relaxed 1.6"
+  font_weights: "normal 400, bold 700"
+  code_size: "0.9rem — mono in sans context needs ~10% reduction"
+  letter_spacing: "tight 0, wide 0.05rem"
+
+typography:
+  voices:
+    prose: "sans-serif — body text only (the reading voice)"
+    structural: "monospace — headings, chrome, code, links (the system voice)"
+  heading_scale:
+    h1: "text-3xl, bold, leading-tight"
+    h2: "text-2xl, bold, leading-tight"
+    h3: "text-xl, bold, leading-snug"
+    h4: "text-lg, bold, leading-snug"
+  chrome:
+    nav: "text-sm, leading-snug, tracking-wide, uppercase"
+    time: "text-sm, leading-snug"
+    footer: "text-sm, leading-snug, tracking-wide, uppercase"
+  code:
+    all: "mono, code-size (0.9rem), leading-normal"
+  table:
+    th: "text-align left"
+  links: "mono — interactive elements use the structural voice"
+  unit_convention: "rem for all sizing tokens — no em to avoid cascade compounding"
+
+colors:
+  approach: "dark-first — dark mode is CSS default, light mode via prefers-color-scheme"
+  color_scheme: "dark light — declared on :root"
+  temperature: "cool blue-gray neutrals, gunmetal darks"
+  architecture:
+    principle: "theme colors are source of truth, base16 derives from them"
+    flow: "--color-* defined with direct hex values → base16 slots reference var(--color-*) where applicable"
+    benefit: "semantic tokens are stable across modes; base16 can be freely remapped per mode without conditional overrides"
+  theme_colors:
+    dark:
+      chrome: "#4cd48a — acid green"
+      interactive: "#5e8ef0 — electric blue"
+      emphasis: "#e464a0 — hot pink"
+    light:
+      chrome: "#0e8848 — deep green"
+      interactive: "#1858d0 — deep blue"
+      emphasis: "#d02878 — deep pink"
+  semantic_surfaces:
+    base: "var(--base00) — page background"
+    raised: "var(--base01) — code blocks, cards, tags"
+    overlay: "var(--base02) — selections, overlays"
+  semantic_text:
+    primary: "var(--base05) — default body text"
+    secondary: "var(--base04) — metadata, subdued"
+    muted: "var(--base03) — comments, hints"
+  dark_neutrals:
+    base00: "#0c1018 — deep space background"
+    base01: "#1c2535 — raised surface (lightened for contrast)"
+    base02: "#1f2837 — selection"
+    base03: "#3c465c — comments, muted"
+    base04: "#5b6780 — subdued foreground"
+    base05: "#b0bcd0 — default foreground"
+    base06: "#d0d9e8 — light foreground"
+    base07: "#edf1f7 — brightest"
+  dark_accents:
+    base08: "#ef6b82 — coral-pink (variables, errors, tags)"
+    base09: "#ea9c58 — amber (constants, numbers)"
+    base0A: "#ecd050 — electric yellow (types, classes, attributes)"
+    base0B: "var(--color-chrome) — acid green (strings, diff inserted)"
+    base0C: "#48bece — bright teal (regex, escapes, builtins)"
+    base0D: "var(--color-interactive) — electric blue (functions, methods)"
+    base0E: "var(--color-emphasis) — hot pink (keywords, storage)"
+    base0F: "#946894 — dusty mauve (embedded, deprecated)"
+  light_neutrals:
+    base00: "#f6f8fb — cool off-white background"
+    base01: "#ebeef5 — raised surface"
+    base02: "#dce1ec — selection"
+    base03: "#858da5 — comments, muted"
+    base04: "#5a6580 — subdued foreground"
+    base05: "#2a3348 — default foreground"
+    base06: "#1a2238 — dark foreground"
+    base07: "#0d1420 — near-black"
+  light_accents:
+    note: "pink and indigo swapped vs dark mode for balanced code readability"
+    base08: "#d83050 — deeper coral"
+    base09: "#c06818 — deeper amber"
+    base0A: "var(--color-emphasis) — pink (types, classes — swapped from dark yellow)"
+    base0B: "var(--color-chrome) — deep green (strings)"
+    base0C: "#0888a0 — deeper teal"
+    base0D: "var(--color-interactive) — deep blue (functions)"
+    base0E: "#5a38c0 — indigo (keywords — swapped from dark pink)"
+    base0F: "#8838a0 — deeper mauve"
+  element_colors:
+    h1: "--color-chrome (green — post titles, category titles)"
+    h2_h3_h4: "inherit --text-primary (hierarchy through typography, not color)"
+    inline_code: "--color-chrome (green — ties to structural voice)"
+    code_blocks: "--text-primary text, --surface-raised background, syntax colors via Base16"
+    nav_footer: "--color-chrome"
+    links: "--color-interactive, hover --color-emphasis"
+    time: "--text-secondary"
+    selection: "--surface-overlay"
+  syntax_mapping:
+    comments: "base03 italic — .c .cm .c1 .cs .ch .cd"
+    preprocessor: "base0E — .cp (directive-like), base0B — .cpf (filepath-like)"
+    keywords: "base0E — .k .kd .kn .kp .kr .kc"
+    keyword_type: "base0A — .kt (identity lane)"
+    strings: "base0B — .s .s1 .s2 .sb .sc .dl .sd .sh"
+    string_interpolation: "base09 — .si .sx"
+    regex_escapes: "base0C — .sr .se .ss"
+    functions: "base0D — .nf .fm"
+    classes_attributes: "base0A — .nc .nn .nd .ni .na"
+    tags: "base08 — .nt"
+    variables: "base08 — .nv .vi .vg .vc"
+    constants_numbers: "base09 — .no .m .mi .mf .mh .mo .mb .mx .il .l"
+    builtins: "base0C — .nb"
+    builtin_pseudo: "base04 — .bp"
+    operators_punctuation: "base05 — .o .p"
+    operator_word: "base0E — .ow (and/or/not are keyword-like)"
+    properties: "base0A — .py"
+    labels: "base0D — .nl"
+    name_generic: "base05 — .n .nx (fallback — Rouge lexer limitation)"
+    exceptions: "base08 — .ne"
+    errors: "base08 — .err"
+    diff: "base08 deleted, base0B inserted, base0D headings"
+    deprecated: "base0F — .x"
+    line_numbers: "base03 — .linenos"
+
+layout:
+  spacing_scale:
+    system: "golden ratio (φ = 1.618)"
+    baseline: "--space-4 = 1rem"
+    steps:
+      space-0: "0.0625rem"
+      space-1: "0.125rem"
+      space-2: "0.25rem"
+      space-3: "0.5rem"
+      space-4: "1rem (baseline)"
+      space-5: "1.618rem"
+      space-6: "2.618rem"
+      space-7: "4.236rem"
+  content_width: "50rem (~80-90 characters per line)"
+  page_padding: "var(--space-4)"
+  vertical_rhythm:
+    headings:
+      h1: "margin-block --space-3 (symmetric)"
+      h2: "margin-block --space-6 --space-3 (asymmetric — more separation above)"
+      h3: "margin-block --space-5 --space-3"
+      h4: "margin-block --space-4 --space-3"
+      hr_before_h2: "margin-block-start --space-5 (reduced after divider)"
+    blocks: "--space-4 between sibling paragraphs, lists, tables, blockquotes"
+    code_blocks: "--space-4 block spacing"
+    section_dividers: "--space-6 around hr"
+  page_structure:
+    header: "padding-block --space-4"
+    main: "padding-block --space-4"
+    footer: "padding-block --space-4"
+  responsive:
+    narrow: "max-width 48rem — --space-4 inline padding"
+    wide: "min-width 80rem — zero inline padding (content width constrains)"
+
+borders:
+  tokens:
+    border_width: "1px — default for all standard borders"
+    border_width_thick: "3px — accent borders (blockquotes)"
+    border_color: "var(--base02) — standard border color"
+    border_color_muted: "var(--base01) — subtle separators (table row lines)"
+    radius: "2px — subtle rounding on code blocks, inline code, tags, nav dropdown"
+  elements:
+    hr: "1px solid --border-color, no ornament"
+    blockquote: "3px left border, --color-emphasis (pink)"
+    code_blocks: "1px solid --border-color frame, border-radius --radius"
+    inline_code: "1px solid --border-color, border-radius --radius"
+    table: "minimal — top/bottom borders on table, header border --text-muted, row separators --border-color-muted, no striping"
+
+transitions:
+  tokens:
+    duration_75: "75ms — nav menu reveal"
+    duration_100: "100ms — hover states, color shifts"
+    ease_default: "ease-out — quick response, gentle settle"
+  elements:
+    links: "color transition, --duration-100, --ease-default"
+    nav_menu: "clip-path tray slide via ::details-content with content-visibility allow-discrete, --duration-75"
+  scope: "interactive elements only — no transitions on static content"
+
+components:
+  nav:
+    layout: "flex, space-between, center-aligned"
+    title: "--text-lg, bold, --text-primary"
+    menu: "<details>/<summary> dropdown, no JavaScript"
+    menu_trigger: "--color-interactive, cursor pointer"
+    menu_list: "absolute right, --surface-raised background, --border-color border, --radius rounding"
+    menu_animation: "clip-path tray slide (open/close) via ::details-content content-visibility transition"
+    active_link: "--color-chrome"
+  tags:
+    container: "flex wrap, gap --space-3"
+    tag: "--text-xs, bold, uppercase, --tracking-wide, --color-emphasis text, --surface-raised background, --radius, padding --space-0 --space-2"
+  post_list:
+    style: "list-style none (overrides browser default preserved by reset)"
+  post_card:
+    spacing: "--space-5 between cards"
+    divider: "hr between cards (hidden on first card), margin-block 0 --space-5"
+    title: "--text-lg, bold"
+    meta: "mono, --text-sm, uppercase, --tracking-wide"
+    date_format: "YYYY.MM.dd"
+    tags: "margin-block-start --space-2"
+    excerpt: "margin-block-start --space-2"
+  post_header:
+    spacing: "margin-block-end --space-5"
+    title: "h1 (inherits layout h1 margin-block --space-3)"
+    meta: "mono, --text-sm, uppercase, --tracking-wide, category link + date"
+    date_format: "YYYY.MM.dd"
+    tags: "margin-block-start --space-2"
+  pagination:
+    layout: "3-column grid (1fr auto 1fr)"
+    typography: "mono, --text-sm, bold, uppercase, --tracking-wide"
+    page_number: "--text-primary"
+    links: "hidden on first/last page (empty spans preserve grid)"
+    position: "above posts"
+    spacing: "margin-block-end --space-5"
+  footer:
+    content: "bold GitHub org link, target _blank"
